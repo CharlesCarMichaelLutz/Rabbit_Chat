@@ -1,0 +1,9 @@
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.AssemblyReference.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfoInputs.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfo.cs
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.CoreCompileInputs.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.sourcelink.json
