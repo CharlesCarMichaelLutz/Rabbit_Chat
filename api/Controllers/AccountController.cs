@@ -13,11 +13,9 @@ namespace api.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
-        public AccountController(ITokenService tokenService, IUserService userService)
+        public AccountController(IUserService userService)
         {
-            _tokenService = tokenService;
             _userService = userService;
         }
 
@@ -25,6 +23,8 @@ namespace api.Controllers
         public async Task<IActionResult> Login(User user )
         {
             var loginUser = await _userService.LoginAsync(user);
+
+            return Ok(loginUser);
 
         }
 

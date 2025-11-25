@@ -1,9 +1,17 @@
+using api.Data;
+using api.Repositories;
 using api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
+builder.Services.AddEndpointsApiExplorer();
+
+// Register minimal OpenAPI support (no SwaggerGen).
+builder.Services.AddOpenApi();
 
 builder.Services.AddAuthentication(x =>
 {
@@ -27,13 +35,16 @@ builder.Services.AddAuthentication(x =>
 //builder.Services.AddScoped<IPostgreSqlConnectionFactory>(_ =>
 //    new PostgreSqlConnectionFactory(config.GetValue<string>("ConnectionStrings:chat_app")));
 
+builder.Services.AddSingleton<IStore, Store>();
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
@@ -41,6 +52,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "Version 1");
+    });
 }
 
 app.UseHttpsRedirection();

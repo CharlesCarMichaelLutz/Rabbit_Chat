@@ -65,6 +65,10 @@
             "Npgsql": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[9.0.6, )"
             }
           },
           "imports": [
