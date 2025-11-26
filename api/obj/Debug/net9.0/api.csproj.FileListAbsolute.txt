@@ -1,12 +1,3 @@
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.AssemblyReference.cache
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rpswa.dswa.cache.json
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfoInputs.cache
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfo.cs
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.CoreCompileInputs.cache
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.sourcelink.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\appsettings.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\api.staticwebassets.endpoints.json
@@ -26,7 +17,17 @@ C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.IdentityM
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Npgsql.dll
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.AssemblyReference.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfoInputs.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.AssemblyInfo.cs
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.csproj.CoreCompileInputs.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.sourcelink.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -42,4 +43,3 @@ C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\refint\api.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.pdb
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\api.genruntimeconfig.cache
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\obj\Debug\net9.0\ref\api.dll
-C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

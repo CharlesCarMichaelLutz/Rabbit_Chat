@@ -1,6 +1,9 @@
 using api.Data;
+using api.Models;
 using api.Repositories;
 using api.Services;
+using api.Validation;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -24,7 +27,7 @@ builder.Services.AddAuthentication(x =>
     {
         ValidIssuer = config["Jwt:Issuer"],
         ValidAudience = config["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(config["Jwt:Key"]!)),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(config["Jwt:Secret"]!)),
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
@@ -37,11 +40,12 @@ builder.Services.AddAuthentication(x =>
 
 builder.Services.AddSingleton<IStore, Store>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IValidator<UserRequestDto>, UserValidator>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Add services to the container.
 builder.Services.AddControllers();

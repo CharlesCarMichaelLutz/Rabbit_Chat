@@ -1,10 +1,8 @@
 ﻿using api.Models;
 using api.Services;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 
 namespace api.Controllers
@@ -14,41 +12,37 @@ namespace api.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
-        public AccountController(IUserService userService)
+        private readonly IValidator<UserRequestDto> _validator;
+
+        public AccountController(IUserService userService, IValidator<UserRequestDto> validator)
         {
             _userService = userService;
+            _validator = validator;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(User user )
+        public async Task<IResult> Login(UserRequestDto request)
         {
-            var loginUser = await _userService.LoginAsync(user);
+            var loginUser = await _userService.LoginAsync(request);
 
             return Ok(loginUser);
-
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user)
+        public async Task<IResult> Register(UserRequestDto request)
         {
-            var validateUser = await _userService.RegisterAsync(user);
+            //1 Validate username and pasword with FluentValidation
 
-            return Ok(validateUser);
+            var validationResult = await _validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
+
+            var registerUser = await _userService.RegisterAsync(request);
+
+            return Ok(registerUser);
         }
-
     }
 }
-
-
-//    private const string TokenSecret = "secretKeyWillGoHere";
-//    private static readonly TimeSpan TokenLifetime = TimeSpan.FromHours(1);
-
-//    [HttpPost("token")]
-
-//    public IActionResult GenerateToken(
-//        [FromBody]TokenGenerationRequest request)
-//    {
-//        var tokenHandler = new JwtSecurityTokenHandler();
-//        var key = Encoding.UTF8.GetBytes(TokenSecret);
-
-//    }

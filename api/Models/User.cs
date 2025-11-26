@@ -1,15 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace api.Models
+﻿namespace api.Models
 {
     public class User
     {
         //public int UserId { get; set; }
-        [Required]
         public string UserName { get; set; }
-        [Required]
         public string PasswordHash { get; set; } = string.Empty;
-        [Required]
+        //public string IdenticonUrl { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

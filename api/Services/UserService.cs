@@ -1,13 +1,15 @@
 ﻿using api.Models;
 using api.Repositories;
+
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace api.Services
 {
     public interface IUserService
     {
-        Task<UserDto> RegisterAsync(User user);
-        Task<UserDto> LoginAsync(User user);
+        Task<UserResponseDto> RegisterAsync(UserRequestDto userDto);
+        Task<UserResponseDto> LoginAsync(UserRequestDto user);
     }
     public class UserService : IUserService
     {
@@ -20,75 +22,69 @@ namespace api.Services
             _passwordHasher = passwordHasher;
             _tokenService = tokenService;
         }
-        public async Task<UserDto> RegisterAsync(User user)
+        public async Task<UserResponseDto> RegisterAsync(UserRequestDto request)
         {
-
-            //1 Validate username and pasword with FluentValidation
-
             //2 check for existing username
-            var existingUser = _userRepository.GetByUsernameAsync(user.UserName);
+            //3 call to httpClient to get avatar from Identicon API
+            //4 hash and salt password 
+            //5 query Identicon Api endpoint to generate avatar 
+            //6 add user to DB/Store
+            //7 authorize user by generating JWT
+            //8 send to Account Controller
+
+            var stored = _userRepository.GetByUsernameAsync(request.UserName);
 
             //returns null if no existing user found
-
-            if (existingUser is not null)
+            if (stored is not null)
             {
-                var message = $"An account with username {user.UserName} already exists";
+                var message = $"An account with username {request.UserName} already exists";
                     throw new Exception(message);
             }
 
-            //call to httpClient to get avatar from Identicon API
             //var fetchAvatar = GetAvatar(user.UserName);
 
-            var addUser = new User
+            var user = new User
             {
-                UserName = user.UserName,
-                //3 hash and salt password 
-                PasswordHash = _passwordHasher.Hash(user.PasswordHash),
-                //4 query Identicon Api endpoint to generate avatar 
+                UserName = request.UserName,
+                PasswordHash = _passwordHasher.Hash(request.Password),
                 CreatedDate = DateTime.UtcNow
             };
 
-            //5 add user to DB/Store
+            var result = _userRepository.CreateAsync(user);
 
-            var result = _userRepository.CreateAsync(addUser);
-
-
-            //4 authorize user by generating JWT
-
-            //5 send user into the application home page
-            return new UserDto
+            return new UserResponseDto
             {
                 UserName = result.UserName,
                 Token = _tokenService.Create(result)
             };
         }
-
-        public async Task<UserDto> LoginAsync(User user)
+        public async Task<UserResponseDto> LoginAsync(UserRequestDto request)
         {
-            // 1 check for the username in the DB
-            var loginRequest = _userRepository.GetByUsernameAsync(user.UserName);
+            // 1 check for username in DB
+            // 2 verify password hash
+            // 3 generate JWT token
+            // 4 send to Account Controller
+
+            var loginRequest = _userRepository.GetByUsernameAsync(request.UserName);
                 
             if(loginRequest is null)
             {
+                // Throws an HTTP 500 error
                 throw new Exception("The user was not found");
             }
 
-            // 2 verify the password hash
-            bool verified = _passwordHasher.Verify(user.PasswordHash, loginRequest.PasswordHash);
+            bool verified = _passwordHasher.Verify(request.Password, loginRequest.PasswordHash);
 
             if(!verified)
             {
                 throw new Exception("The password is incorrect");
             }
 
-            //3 generate JWT token
-
-            return new UserDto
+            return new UserResponseDto
             {
                 UserName = loginRequest.UserName,
                 Token = _tokenService.Create(loginRequest)
             };
         }
-
     }
 }
