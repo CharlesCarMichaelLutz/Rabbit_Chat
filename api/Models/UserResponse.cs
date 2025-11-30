@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace api.Models
 {
-    public class UserResponseDto
+    public class UserResponse
     {
         //public int UserId { get; set; }
         public string UserName { get; set; }

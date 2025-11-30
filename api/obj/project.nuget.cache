@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "156OVQv3/2A=",
+  "dgSpecHash": "kTaIW9Jd87Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ml\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512",
+    "C:\\Users\\Ml\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "C:\\Users\\Ml\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.0\\fluentvalidation.dependencyinjectionextensions.12.1.0.nupkg.sha512",
     "C:\\Users\\Ml\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.11\\microsoft.aspnetcore.authentication.jwtbearer.9.0.11.nupkg.sha512",
     "C:\\Users\\Ml\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "C:\\Users\\Ml\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",

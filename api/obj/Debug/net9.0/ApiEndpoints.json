@@ -8,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "api.Models.User",
+        "Name": "request",
+        "Type": "api.Models.UserRequest",
         "IsRequired": true
       }
     ],
@@ -24,8 +24,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "api.Models.User",
+        "Name": "request",
+        "Type": "api.Models.UserRequest",
         "IsRequired": true
       }
     ],

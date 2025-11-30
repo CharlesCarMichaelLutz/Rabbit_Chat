@@ -4,6 +4,7 @@ using api.Repositories;
 using api.Services;
 using api.Validation;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -41,14 +42,13 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddSingleton<IStore, Store>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IValidator<UserRequestDto>, UserValidator>();
-
+builder.Services.AddScoped<IValidator<UserRequest>, UserValidator>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

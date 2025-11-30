@@ -7,6 +7,8 @@ C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\api.runtimeconfig.j
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\api.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\api.pdb
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Ml\Desktop\Projects\RabbitChat\api\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll

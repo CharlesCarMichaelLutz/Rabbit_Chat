@@ -1,14 +1,15 @@
 ﻿using api.Models;
 using api.Data ;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace api.Repositories
 {
     public interface IUserRepository
     {
-        public User CreateAsync(User user);
+        Task<User> CreateUserAsync(User user);
 
-        public User GetByUsernameAsync(string username);
+        Task<User?> GetByUsernameAsync(string username);
     }
     public class UserRepository : IUserRepository
     {
@@ -18,19 +19,18 @@ namespace api.Repositories
             //DI connection to npgsql DB Instance 
             _store = store;
         }
-        public User CreateAsync(User user)
+        public async Task<User?> GetByUsernameAsync(string username)
+        {
+            //check to see if username already exists 
+            //return   _store.Users.FirstOrDefault(u => u.UserName == username);
+            return await Task.FromResult(_store.Users.FirstOrDefault(u => u.UserName == username));
+        }
+
+        public async Task<User> CreateUserAsync(User user)
         {
             _store.Users.Add(user);
 
-            return user;
-        }
-
-        public User GetByUsernameAsync(string username)
-        {
-            //check to see if username already exists 
-           var user = _store.Users.FirstOrDefault(u => u.UserName == username);
-
-            return user;
+            return await Task.FromResult(user);
         }
     }
 }

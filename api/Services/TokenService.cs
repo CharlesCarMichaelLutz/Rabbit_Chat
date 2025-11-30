@@ -9,11 +9,11 @@ namespace api.Services
 {
     public interface ITokenService
     {
-        string Create(User user);
+        string Create(string username);
     }
     public class TokenService(IConfiguration configuration) : ITokenService
     {
-        public string Create(User user)
+        public string Create(string username)
         {
             string secretKey = configuration["Jwt:Secret"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
@@ -22,7 +22,7 @@ namespace api.Services
 
             var claims = new[]
             {
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, username),
                 new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

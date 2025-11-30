@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace api.Validation
 {
-    public class UserValidator : AbstractValidator<UserRequestDto>
+    public class UserValidator : AbstractValidator<UserRequest>
     {
         public UserValidator()
         {

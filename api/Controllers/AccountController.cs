@@ -1,9 +1,8 @@
 ﻿using api.Models;
 using api.Services;
+using api.Validation;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace api.Controllers
 {
@@ -12,37 +11,44 @@ namespace api.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IValidator<UserRequestDto> _validator;
-
-        public AccountController(IUserService userService, IValidator<UserRequestDto> validator)
+        private readonly IValidator<UserRequest> _validator;
+        public AccountController(IUserService userService, IValidator<UserRequest> validator)
         {
             _userService = userService;
             _validator = validator;
         }
 
-        [HttpPost("login")]
-        public async Task<IResult> Login(UserRequestDto request)
-        {
-            var loginUser = await _userService.LoginAsync(request);
-
-            return Ok(loginUser);
-        }
-
         [HttpPost("register")]
-        public async Task<IResult> Register(UserRequestDto request)
+        public async Task<IActionResult> Register(UserRequest request)
         {
             //1 Validate username and pasword with FluentValidation
 
-            var validationResult = await _validator.ValidateAsync(request);
-
-            if (!validationResult.IsValid)
+            //Automatic Validation
+            if (!ModelState.IsValid)
             {
-                return Results.ValidationProblem(validationResult.ToDictionary());
+                return StatusCode(StatusCodes.Status400BadRequest, ModelState);
             }
 
-            var registerUser = await _userService.RegisterAsync(request);
+            //Manual Validation
+            //var validationresult = _validator.Validate(request);
 
+            //if(!validationresult.IsValid)
+            //{
+            //    return StatusCode(StatusCodes.Status400BadRequest, validationresult.Errors);
+            //}
+
+            var registerUser = await _userService.RegisterAsync(request.UserName, request.Password);
+
+            //return Ok(registerUser);
             return Ok(registerUser);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserRequest request)
+        {
+            var loginUser = await _userService.LoginAsync(request.UserName, request.Password);
+
+            return Ok(loginUser);
         }
     }
 }
