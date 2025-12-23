@@ -1,4 +1,4 @@
-﻿using api.Models;
+﻿using api.Models.User;
 using api.Services;
 using api.Validation;
 using FluentValidation;

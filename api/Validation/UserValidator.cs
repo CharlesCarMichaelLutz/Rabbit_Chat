@@ -1,4 +1,4 @@
-﻿using api.Models;
+﻿using api.Models.User;
 using FluentValidation;
 using System.Text.RegularExpressions;
 

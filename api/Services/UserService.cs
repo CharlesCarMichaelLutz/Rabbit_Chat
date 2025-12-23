@@ -1,4 +1,4 @@
-﻿using api.Models;
+﻿using api.Models.User;
 using api.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
