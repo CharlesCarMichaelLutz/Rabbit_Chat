@@ -1,6 +1,4 @@
 ﻿using api.Data;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging.Abstractions;
 using api.Models.User;
 
 namespace api.Repositories
@@ -12,24 +10,29 @@ namespace api.Repositories
     }
     public class UserRepository : IUserRepository
     {
-        private readonly IStore _store;
-        public UserRepository(IStore store)
+        private readonly ISqlConnectionFactory _connectionFactory;
+
+        public UserRepository(ISqlConnectionFactory connectionFactory)
         {
             //DI connection to npgsql DB Instance 
-            _store = store;
+            _connectionFactory = connectionFactory;
         }
         public async Task<User?> GetByUsernameAsync(string username)
         {
             //check to see if username already exists 
-            //return   _store.Users.FirstOrDefault(u => u.UserName == username);
-            return await Task.FromResult(_store.Users.FirstOrDefault(u => u.UserName == username));
+
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            
+            return null;
         }
 
         public async Task<User> CreateUserAsync(User user)
         {
-            _store.Users.Add(user);
+            //return await Task.FromResult(user);
 
-            return await Task.FromResult(user);
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
+            return null;
         }
     }
 }

@@ -36,8 +36,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-//builder.Services.AddScoped<IPostgreSqlConnectionFactory>(_ =>
-//    new PostgreSqlConnectionFactory(config.GetValue<string>("ConnectionStrings:chat_app")));
+//builder.Services.AddScoped<ISqlConnectionFactory>(_ =>
+//    new SqlConnectionFactory(config.GetValue<string>("ConnectionStrings:chat_app")));
 
 builder.Services.AddSingleton<IStore, Store>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();

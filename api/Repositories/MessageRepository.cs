@@ -1,6 +1,5 @@
-﻿using api.Models.Message;
-using api.Services;
-using System.Reflection.Metadata.Ecma335;
+﻿using api.Data;
+using api.Models.Message;
 
 namespace api.Repositories
 {
@@ -12,15 +11,19 @@ namespace api.Repositories
     }
     public class MessageRepository : IMessageRepository
     {
-        public MessageRepository()
+        private readonly ISqlConnectionFactory _connectionFactory;
+        public MessageRepository(ISqlConnectionFactory connectionFactory)
         {
             //inject DB Context here
+            _connectionFactory = connectionFactory;
         }
         public async Task<MessageResponse> SaveMessageAsync(Message message)
         {
             //create connection to DB
             //save to DB
             //return to service
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
             return null;
         }
         public async Task<MessageResponse> GetMessageById(int id)
@@ -28,6 +31,8 @@ namespace api.Repositories
             //create connection to DB
             //retrieve from DB
             //return to service
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
             return null;
         }
         public async Task<MessageResponse> SoftDeleteMessage(Message message)
@@ -35,6 +40,8 @@ namespace api.Repositories
             //create connection to DB
             //save to DB
             //return to service
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
             return null;
         }
     }
