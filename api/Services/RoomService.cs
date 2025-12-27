@@ -8,8 +8,9 @@ namespace api.Services
     {
         Task<GroupResponse> CreateGroupAsync(GroupRequest request);
         Task<PrivateResponse> CreatePrivateAsync(PrivateRequest request);
-        Task<bool> AddUserToGroupAsync(AddUserRequest request);
-        Task<List<GroupResponse>> LoadRoomAsync();
+        Task<AddUserResponse> AddUserToGroupAsync(AddUserRequest request);
+        Task<IEnumerable<Gmsg>> LoadGroup();
+        Task<IEnumerable<Pmsg>> LoadPrivate();
     }
     public class RoomService : IRoomService
     {
@@ -70,17 +71,34 @@ namespace api.Services
             
             return await _roomRepository.AddUserToGroupAsync(addUser);
         }
-        public async Task<List<GroupResponse>> LoadRoomAsync()
+        public async Task<IEnumerable<Gmsg>> LoadGroup()
         {
-            //var chatroom = 
-            //return messageList.Select(m => new MessageModel
-            //{
-            //    Id = m.MessageId,
-            //    UserId = m.UserId,
-            //    Text = m.Text
-            //});
+            var chatroomList = await _roomRepository.LoadGroupAsync();
 
-            return null;
+            return chatroomList.Select(m => new Gmsg
+            {
+                MessageId = m.MessageId,
+                Text = m.Text,
+                UserId = m.UserId,
+                GroupChatId = m.GroupChatId,
+                CreatedDate = m.CreatedDate,
+                IsDeleted = m.IsDeleted,
+            });
         }
+        public async Task<IEnumerable<Pmsg>> LoadPrivate()
+        {
+            var chatroomList = await _roomRepository.LoadPrivateAsync();
+
+            return chatroomList.Select(m => new Pmsg
+            {
+                MessageId = m.MessageId,
+                Text = m.Text,
+                UserId = m.UserId,
+                PrivateChatId = m.PrivateChatId,
+                CreatedDate = m.CreatedDate,
+                IsDeleted = m.IsDeleted,
+            });
+        }
+
     }
 }
