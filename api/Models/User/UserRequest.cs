@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace api.Models
+namespace api.Models.User
 {
     public class UserRequest
     {

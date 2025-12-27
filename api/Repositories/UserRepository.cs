@@ -1,7 +1,7 @@
-﻿using api.Models;
-using api.Data ;
+﻿using api.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
+using api.Models.User;
 
 namespace api.Repositories
 {

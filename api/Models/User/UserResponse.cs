@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography.X509Certificates;
 
-namespace api.Models
+namespace api.Models.User
 {
     public class UserResponse
     {

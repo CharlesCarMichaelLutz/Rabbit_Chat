@@ -1,5 +1,5 @@
 using api.Data;
-using api.Models;
+using api.Models.User;
 using api.Repositories;
 using api.Services;
 using api.Validation;
