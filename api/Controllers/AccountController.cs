@@ -37,7 +37,7 @@ namespace api.Controllers
             //    return StatusCode(StatusCodes.Status400BadRequest, validationresult.Errors);
             //}
 
-            var registerUser = await _userService.RegisterAsync(request.UserName, request.Password);
+            var registerUser = await _userService.RegisterAsync(request.UserName, request.Password, request.IdenticonUrl);
 
             //return Ok(registerUser);
             return Ok(registerUser);

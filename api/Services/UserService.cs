@@ -9,7 +9,7 @@ namespace api.Services
 {
     public interface IUserService
     {
-        Task<UserResponse> RegisterAsync(string username, string password);
+        Task<UserResponse> RegisterAsync(string username, string password, string url);
         Task<UserResponse> LoginAsync(string username, string password);
     }
     public class UserService : IUserService
@@ -23,7 +23,7 @@ namespace api.Services
             _passwordHasher = passwordHasher;
             _tokenService = tokenService;
         }
-        public async Task<UserResponse> RegisterAsync(string username, string password)
+        public async Task<UserResponse> RegisterAsync(string username, string password, string url)
         {
             //2 check for existing username
             //3 call to httpClient to get avatar from Identicon API
@@ -41,12 +41,15 @@ namespace api.Services
                 throw new Exception(message);
             }
 
-            //var fetchAvatar = GetAvatar(user.UserName);
+            //passing in a mock url from endpoint to assign Identicon
+                //implement httpclient to fetch gravatar below
+                //var fetchAvatar = GetAvatar(user.UserName);
 
             var newUser = new User
             {
                 UserName = username,
                 PasswordHash = _passwordHasher.Hash(password),
+                IdenticonUrl = url,
                 CreatedDate = DateTime.UtcNow
             };
 
