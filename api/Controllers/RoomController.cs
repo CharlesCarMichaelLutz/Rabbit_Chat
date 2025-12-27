@@ -20,7 +20,7 @@ namespace api.Controllers
         {
             var createGroup = await _roomService.CreateGroupAsync(request);
 
-            return null;
+            return Ok(createGroup);
         }
 
         [HttpPost("create/private")]
@@ -28,23 +28,31 @@ namespace api.Controllers
         {
             var createGroup = await _roomService.CreatePrivateAsync(request);
 
-            return null;
+            return Ok(createGroup);
         }
 
         [HttpPost("add")]
         public async Task<IActionResult> AddUserToGroup([FromBody] AddUserRequest request)
         {
             var addUser = await _roomService.AddUserToGroupAsync(request);
-            
-            return null;
+
+            return Ok(addUser);
         }
 
-        [HttpGet("load")]
-        public async Task<IActionResult> LoadRoom()
+        [HttpGet("load/group")]
+        public async Task<IActionResult> LoadGroup()
         {
-            var loadRoom = await _roomService.LoadRoomAsync();
+            var loadRoom = await _roomService.LoadGroup();
 
-            return null;
+            return Ok(loadRoom);
+        }
+
+        [HttpGet("load/private")]
+        public async Task<IActionResult> LoadPrivate()
+        {
+            var loadRoom = await _roomService.LoadPrivate();
+
+            return Ok(loadRoom);
         }
     }
 }
