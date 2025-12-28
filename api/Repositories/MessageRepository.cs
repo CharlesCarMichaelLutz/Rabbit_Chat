@@ -1,5 +1,6 @@
 ﻿using api.Data;
 using api.Models.Message;
+using Dapper;
 
 namespace api.Repositories
 {
@@ -7,42 +8,41 @@ namespace api.Repositories
     {
         Task<MessageResponse> SaveMessageAsync(Message message);
         Task<MessageResponse> GetMessageById(int id);
-        Task<MessageResponse> SoftDeleteMessage(Message message);
+        Task<bool> SoftDeleteMessage(Message message);
     }
     public class MessageRepository : IMessageRepository
     {
         private readonly ISqlConnectionFactory _connectionFactory;
         public MessageRepository(ISqlConnectionFactory connectionFactory)
         {
-            //inject DB Context here
             _connectionFactory = connectionFactory;
         }
         public async Task<MessageResponse> SaveMessageAsync(Message message)
         {
-            //create connection to DB
-            //save to DB
-            //return to service
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            return null;
+            var query = @"INSERT INTO messages (text ,user_id ,group_chat_id ,private_chat_id ,created_at ,is_deleted) 
+                VALUES (@Text ,@UserId ,@GroupChatId ,@PrivateChatId ,@CreatedDate ,@IsDeleted)";
+
+            return await connection.QuerySingleAsync<MessageResponse>(query);
         }
         public async Task<MessageResponse> GetMessageById(int id)
         {
-            //create connection to DB
-            //retrieve from DB
-            //return to service
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            return null;
+            var query = @"SELECT * FROM messages WHERE message_id = @MessageId";
+
+            return await connection.QuerySingleAsync<MessageResponse>(query, id);
         }
-        public async Task<MessageResponse> SoftDeleteMessage(Message message)
+        public async Task<bool> SoftDeleteMessage(Message message)
         {
-            //create connection to DB
-            //save to DB
-            //return to service
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            return null;
+            var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE user_id = @UserId ";
+
+            var result = await connection.ExecuteAsync(query, message);
+
+            return result > 0;
         }
     }
 }
