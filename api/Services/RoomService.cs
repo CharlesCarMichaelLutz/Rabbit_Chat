@@ -1,6 +1,5 @@
 ﻿using api.Models.Rooms;
 using api.Repositories;
-using Microsoft.AspNetCore.SignalR;
 
 namespace api.Services
 {
@@ -9,8 +8,8 @@ namespace api.Services
         Task<GroupResponse> CreateGroupAsync(GroupRequest request);
         Task<PrivateResponse> CreatePrivateAsync(PrivateRequest request);
         Task<AddUserResponse> AddUserToGroupAsync(AddUserRequest request);
-        Task<IEnumerable<Gmsg>> LoadGroup();
-        Task<IEnumerable<Pmsg>> LoadPrivate();
+        Task<IEnumerable<Gmsg>> LoadGroup(int groupId);
+        Task<IEnumerable<Pmsg>> LoadPrivate(int privateId);
     }
     public class RoomService : IRoomService
     {
@@ -21,20 +20,9 @@ namespace api.Services
         }
         public async Task<GroupResponse> CreateGroupAsync(GroupRequest request)
         {
-            //pre seed the first group chat to be the main public room
-                //bool isPrivate = false;
-
-                //var roomCount = await _roomRepository.GetGroupCountAsync();
-
-                //if (roomCount > 0)
-                //{
-                //    isPrivate = true;
-                //}
-
             var newRoom = new Group
             {
                 GroupChatName = request.GroupChatName,
-                //IsPrivate = isPrivate,
                 IsPrivate = false,
                 CreatedDate = DateTime.UtcNow
             };
@@ -43,20 +31,12 @@ namespace api.Services
         }
         public async Task<PrivateResponse> CreatePrivateAsync(PrivateRequest request)
         {
-            //DB checks if private room exists with UNIQUE constraint 
-
-            //if private room exists already return
-
-            //if private room does not exist create in repository
-
             var newRoom = new Private
             {
                 UserOneId = request.UserOneId,
                 UserTwoId = request.UserTwoId,
                 CreatedDate = DateTime.UtcNow
             };
-
-            //return new private room
 
             return await _roomRepository.CreatePrivateAsync(newRoom);
         }
@@ -71,9 +51,9 @@ namespace api.Services
             
             return await _roomRepository.AddUserToGroupAsync(addUser);
         }
-        public async Task<IEnumerable<Gmsg>> LoadGroup()
+        public async Task<IEnumerable<Gmsg>> LoadGroup(int groupId)
         {
-            var chatroomList = await _roomRepository.LoadGroupAsync();
+            var chatroomList = await _roomRepository.LoadGroupAsync(groupId);
 
             return chatroomList.Select(m => new Gmsg
             {
@@ -83,9 +63,9 @@ namespace api.Services
                 GroupChatId = m.GroupChatId,
                 CreatedDate = m.CreatedDate,
                 IsDeleted = m.IsDeleted,
-            });
+            }).ToList();
         }
-        public async Task<IEnumerable<Pmsg>> LoadPrivate()
+        public async Task<IEnumerable<Pmsg>> LoadPrivate(int privateId)
         {
             var chatroomList = await _roomRepository.LoadPrivateAsync();
 
@@ -97,8 +77,7 @@ namespace api.Services
                 PrivateChatId = m.PrivateChatId,
                 CreatedDate = m.CreatedDate,
                 IsDeleted = m.IsDeleted,
-            });
+            }).ToList();
         }
-
     }
 }

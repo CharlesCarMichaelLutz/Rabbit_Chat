@@ -1,9 +1,5 @@
 ﻿using api.Models.User;
 using api.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 
 namespace api.Services
 {

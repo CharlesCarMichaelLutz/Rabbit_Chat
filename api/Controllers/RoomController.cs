@@ -1,6 +1,5 @@
 ﻿using api.Models.Rooms;
 using api.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -40,17 +39,17 @@ namespace api.Controllers
         }
 
         [HttpGet("load/group")]
-        public async Task<IActionResult> LoadGroup()
+        public async Task<IActionResult> LoadGroup(int groupId)
         {
-            var loadRoom = await _roomService.LoadGroup();
+            var loadRoom = await _roomService.LoadGroup(groupId);
 
             return Ok(loadRoom);
         }
 
         [HttpGet("load/private")]
-        public async Task<IActionResult> LoadPrivate()
+        public async Task<IActionResult> LoadPrivate(int privateId)
         {
-            var loadRoom = await _roomService.LoadPrivate();
+            var loadRoom = await _roomService.LoadPrivate(privateId);
 
             return Ok(loadRoom);
         }
