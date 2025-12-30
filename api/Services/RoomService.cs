@@ -67,7 +67,7 @@ namespace api.Services
         }
         public async Task<IEnumerable<Pmsg>> LoadPrivate(int privateId)
         {
-            var chatroomList = await _roomRepository.LoadPrivateAsync();
+            var chatroomList = await _roomRepository.LoadPrivateAsync(privateId);
 
             return chatroomList.Select(m => new Pmsg
             {

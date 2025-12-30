@@ -7,5 +7,6 @@
         public string PasswordHash { get; set; } = string.Empty;
         public string IdenticonUrl { get; set; }
         public DateTime CreatedDate { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
