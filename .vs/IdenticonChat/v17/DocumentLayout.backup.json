@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\models\\user\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\models\\user\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07181610-B971-48CD-A39A-DDD8A5F47460}|api.tests\\api.tests.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api.tests\\services\\messageservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07181610-B971-48CD-A39A-DDD8A5F47460}|api.tests\\api.tests.csproj|solutionrelative:api.tests\\services\\messageservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\models\\user\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\models\\user\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\models\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\models\\user\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07181610-B971-48CD-A39A-DDD8A5F47460}|api.tests\\api.tests.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07181610-B971-48CD-A39A-DDD8A5F47460}|api.tests\\api.tests.csproj|solutionrelative:api.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +25,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 82,
+          "DockedWidth": 76,
           "SelectedChildIndex": 3,
           "Children": [
             {
@@ -46,73 +42,60 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Program.cs",
-              "RelativeDocumentMoniker": "api\\Program.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Program.cs",
-              "RelativeToolTip": "api\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-27T07:55:49.761Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 314,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserResponse.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\UserResponse.cs",
-              "RelativeDocumentMoniker": "api\\Models\\User\\UserResponse.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\UserResponse.cs",
-              "RelativeToolTip": "api\\Models\\User\\UserResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T03:14:57.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\UserRequest.cs",
-              "RelativeDocumentMoniker": "api\\Models\\User\\UserRequest.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\UserRequest.cs",
-              "RelativeToolTip": "api\\Models\\User\\UserRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
+              "RelativeDocumentMoniker": "api\\Services\\MessageService.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
+              "RelativeToolTip": "api\\Services\\MessageService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wBgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T03:14:56.515Z",
+              "WhenOpened": "2026-01-06T00:28:49.785Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\User.cs",
-              "RelativeDocumentMoniker": "api\\Models\\User\\User.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\User\\User.cs",
-              "RelativeToolTip": "api\\Models\\User\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
+              "Title": "MessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\MessageRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\MessageRepository.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\MessageRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\MessageRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-30T03:14:54.994Z",
+              "WhenOpened": "2026-01-06T00:49:46.183Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "api\\Services\\UserService.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\UserService.cs",
-              "RelativeToolTip": "api\\Services\\UserService.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAswAEAAAAXAAAAAAAAAA==",
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api.tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "api.tests\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api.tests\\UnitTest1.cs",
+              "RelativeToolTip": "api.tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T06:27:38.138Z",
+              "WhenOpened": "2026-01-06T00:28:34.088Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 264,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MessageServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api.tests\\Services\\MessageServiceTests.cs",
+              "RelativeDocumentMoniker": "api.tests\\Services\\MessageServiceTests.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api.tests\\Services\\MessageServiceTests.cs",
+              "RelativeToolTip": "api.tests\\Services\\MessageServiceTests.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAmwBgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T00:29:54.557Z",
               "EditorCaption": ""
             }
           ]
