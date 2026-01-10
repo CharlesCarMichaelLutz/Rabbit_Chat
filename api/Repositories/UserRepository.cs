@@ -6,8 +6,9 @@ namespace api.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> CreateUserAsync(User user);
-        Task<User?> GetByUsernameAsync(string username);
+        Task<User?> CheckUsernameAsync(string username);
+        Task<User> GetUser(string username);
+        Task<bool> CreateUserAsync(User user);
     }
     public class UserRepository : IUserRepository
     {
@@ -16,22 +17,52 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<User?> GetByUsernameAsync(string username)
+        public async Task<User?> CheckUsernameAsync(string username)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"SELECT * FROM users WHERE username = @UserName";
+            var user =await connection.QuerySingleOrDefaultAsync<User>(
+                """
+                select
+                    user_id       AS UserId,
+                    username      AS UserName,
+                    password_hash AS PasswordHash,
+                    identicon_url AS IdenticonUrl,
+                    created_at    AS CreatedDate,
+                    is_admin      AS IsAdmin
+                from users where username = @UserName limit 1
+                """, new { username });
 
-            return await connection.QuerySingleOrDefaultAsync<User>(query, username);
+            return user;
         }
-        public async Task<User> CreateUserAsync(User user)
+        public async Task<bool> CreateUserAsync(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
             var query = @"INSERT INTO users (username, password_hash, identicon_url, created_at) 
                 VALUES (@UserName, @PasswordHash, @IdenticonUrl, @CreatedDate)";
 
-            return await connection.QuerySingleAsync<User>(query, user);
+            var result = await connection.ExecuteAsync(query, user);
+
+            return result > 0;
+        }
+        public async Task<User> GetUser(string username)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
+            var user = await connection.QuerySingleAsync<User>(
+                """
+                select
+                    user_id       AS UserId,
+                    username      AS UserName,
+                    password_hash AS PasswordHash,
+                    identicon_url AS IdenticonUrl,
+                    created_at    AS CreatedDate,
+                    is_admin      AS IsAdmin
+                from users where username = @UserName limit 1
+                """, new { username });
+
+            return user;
         }
     }
 }

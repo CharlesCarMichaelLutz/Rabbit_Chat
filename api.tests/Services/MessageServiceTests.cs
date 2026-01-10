@@ -21,8 +21,5 @@ namespace api.tests.Services
             _messageService = new MessageService(_messageRepository);
         }
 
-        [Fact]
-        public void 
-
     }
 }

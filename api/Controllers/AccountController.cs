@@ -21,32 +21,19 @@ namespace api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRequest request)
         {
-            //1 Validate username and pasword with FluentValidation
-
-            //Automatic Validation
             if (!ModelState.IsValid)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, ModelState);
             }
+            var registerUser = await _userService.RegisterAsync(request);
 
-            //Manual Validation
-            //var validationresult = _validator.Validate(request);
-
-            //if(!validationresult.IsValid)
-            //{
-            //    return StatusCode(StatusCodes.Status400BadRequest, validationresult.Errors);
-            //}
-
-            var registerUser = await _userService.RegisterAsync(request.UserName, request.Password, request.IdenticonUrl);
-
-            //return Ok(registerUser);
             return Ok(registerUser);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserRequest request)
         {
-            var loginUser = await _userService.LoginAsync(request.UserName, request.Password);
+            var loginUser = await _userService.LoginAsync(request);
 
             return Ok(loginUser);
         }
