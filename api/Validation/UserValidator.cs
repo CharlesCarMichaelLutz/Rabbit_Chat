@@ -10,15 +10,20 @@ namespace api.Validation
         {
             RuleFor(x => x.UserName)
                 .NotEmpty()
-                .Length(12, 30).WithMessage("Username minimum of 12 characters and maximum of 30")
-                .Matches(new Regex(@"^(?=.*[!@#$%^&*()_+{}:""<>?~`\-=[$$\\;',./])(?=.*[A-Z])(?=.*\d).{12}$"))
-                .WithMessage("1 special character,1 uppercase letter,and 1 number.");
-
+                .Length(12, 30).WithMessage("Must be between 12 and 30 characters")
+                .Matches("[A-Z]").WithMessage("Must contain at least one uppercase letter.")
+                .Matches("[a-z]").WithMessage("Must contain at least one lowercase letter.")
+                .Matches("[0-9]").WithMessage("Must contain at least one number.")
+                .Matches("[^a-zA-Z0-9]").WithMessage("Must contain at least one special character.");
+               
             RuleFor(x => x.Password)
                 .NotEmpty()
-                .Length(12, 30).WithMessage("Password minimum of 12 characters and maximum of 30")
-                .Matches(new Regex(@"^(?=.*[!@#$%^&*()_+{}:""<>?~`\-=[$$\\;',./])(?=.*[A-Z])(?=.*\d).{12}$"))
-                .WithMessage("1 special character,1 uppercase letter,and 1 number.");
+                .Length(12, 30).WithMessage("Must be between 12 and 30 characters")
+                .Matches("[A-Z]").WithMessage("Must contain at least one uppercase letter.")
+                .Matches("[a-z]").WithMessage("Must contain at least one lowercase letter.")
+                .Matches("[0-9]").WithMessage("Must contain at least one number.")
+                .Matches("[^a-zA-Z0-9]").WithMessage("Must contain at least one special character.");
+
         }
     }
 }
