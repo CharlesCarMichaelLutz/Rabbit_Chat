@@ -36,12 +36,9 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-//builder.Services.AddScoped<ISqlConnectionFactory>(_ =>
-//    new SqlConnectionFactory(config.GetValue<string>("ConnectionStrings:test_chat_app")));
-
 builder.Services.AddScoped<ISqlConnectionFactory>(_ =>
     new SqlConnectionFactory(config.GetValue<string>("ConnectionStrings:test_chat_app")));
-
+//builder.Services.AddScoped<DatabaseInitializer>();
 builder.Services.AddSingleton<IStore, Store>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -72,5 +69,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
+//await databaseInitializer.InitializeAsync();
 
 app.Run();

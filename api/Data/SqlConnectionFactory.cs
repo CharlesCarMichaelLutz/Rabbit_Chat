@@ -14,7 +14,6 @@ namespace api.Data
         {
             _connectionString = connectionString;
         }
-
         public async Task<IDbConnection> CreateConnectionAsync()
         {
             var connection = new NpgsqlConnection(_connectionString);
