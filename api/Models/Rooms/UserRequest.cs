@@ -1,6 +1,6 @@
 ﻿namespace api.Models.Rooms
 {
-    public class AddUserRequest
+    public class UserRequest
     {
         public int UserId { get; set; }
         public int GroupChatId { get; set; }

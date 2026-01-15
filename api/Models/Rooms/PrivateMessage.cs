@@ -1,6 +1,6 @@
 ﻿namespace api.Models.Rooms
 {
-    public class Pmsg
+    public class PrivateMessage
     {
         public int MessageId { get; set; }
         public string Text { get; set; }

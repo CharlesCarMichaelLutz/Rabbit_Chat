@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\models\\message\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\models\\message\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\models\\message\\messagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\models\\message\\messagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\data\\sqlconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\data\\sqlconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|c:\\users\\ml\\desktop\\projects\\rabbitchat\\api\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38BC6CAD-A5C6-4388-8AF4-31FDE0A10F88}|api\\api.csproj|solutionrelative:api\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,8 +37,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 56,
-          "SelectedChildIndex": 4,
+          "DockedWidth": 219,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,52 +54,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MessageRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\Message\\MessageRequest.cs",
-              "RelativeDocumentMoniker": "api\\Models\\Message\\MessageRequest.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\Message\\MessageRequest.cs",
-              "RelativeToolTip": "api\\Models\\Message\\MessageRequest.cs",
+              "DocumentIndex": 2,
+              "Title": "MessageController.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Controllers\\MessageController.cs",
+              "RelativeDocumentMoniker": "api\\Controllers\\MessageController.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Controllers\\MessageController.cs",
+              "RelativeToolTip": "api\\Controllers\\MessageController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T00:18:06.793Z",
+              "WhenOpened": "2026-01-14T07:50:53.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MessageService.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
-              "RelativeDocumentMoniker": "api\\Services\\MessageService.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
-              "RelativeToolTip": "api\\Services\\MessageService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "api\\Controllers\\RoomController.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "api\\Controllers\\RoomController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T00:17:35.005Z",
+              "WhenOpened": "2026-01-14T01:18:35.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Message.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\Message\\Message.cs",
-              "RelativeDocumentMoniker": "api\\Models\\Message\\Message.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Models\\Message\\Message.cs",
-              "RelativeToolTip": "api\\Models\\Message\\Message.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T00:14:09.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Program.cs",
               "RelativeDocumentMoniker": "api\\Program.cs",
               "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Program.cs",
               "RelativeToolTip": "api\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAADAAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-12T10:32:26.953Z",
               "EditorCaption": ""
@@ -103,34 +94,58 @@
           ]
         },
         {
-          "DockedWidth": 295,
+          "DockedWidth": 132,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DatabaseInitializer.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Data\\DatabaseInitializer.cs",
-              "RelativeDocumentMoniker": "api\\Data\\DatabaseInitializer.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Data\\DatabaseInitializer.cs",
-              "RelativeToolTip": "api\\Data\\DatabaseInitializer.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAzwEIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "RoomService.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\RoomService.cs",
+              "RelativeDocumentMoniker": "api\\Services\\RoomService.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\RoomService.cs",
+              "RelativeToolTip": "api\\Services\\RoomService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAIwBcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T10:47:31.245Z",
+              "WhenOpened": "2026-01-14T07:48:56.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoomRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\RoomRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\RoomRepository.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\RoomRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\RoomRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAA9wCIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T01:19:09.512Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SqlConnectionFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Data\\SqlConnectionFactory.cs",
-              "RelativeDocumentMoniker": "api\\Data\\SqlConnectionFactory.cs",
-              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Data\\SqlConnectionFactory.cs",
-              "RelativeToolTip": "api\\Data\\SqlConnectionFactory.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
+              "RelativeDocumentMoniker": "api\\Services\\MessageService.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Services\\MessageService.cs",
+              "RelativeToolTip": "api\\Services\\MessageService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvyEAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T10:34:31.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-14T07:49:05.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\MessageRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\MessageRepository.cs",
+              "ToolTip": "C:\\Users\\Ml\\Desktop\\Projects\\RabbitChat\\api\\Repositories\\MessageRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\MessageRepository.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwCAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T07:49:12.301Z"
             }
           ]
         }

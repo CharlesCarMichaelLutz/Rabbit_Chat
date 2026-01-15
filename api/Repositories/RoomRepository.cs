@@ -6,11 +6,14 @@ namespace api.Repositories
 {
     public interface IRoomRepository
     {
-        Task<GroupResponse> CreateGroupAsync(Group group);
+        //Task<GroupResponse> CreateGroupAsync(Group group);
+        Task<bool> CreateGroupAsync(Group group);
         Task<PrivateResponse> CreatePrivateAsync(Private group);
-        Task<AddUserResponse> AddUserToGroupAsync(AddUser user);
-        Task<IEnumerable<Gmsg>> LoadGroupAsync(int groupId);
-        Task<IEnumerable<Pmsg>> LoadPrivateAsync(int privateId);
+        //Task<UserResponse> AddUserToGroupAsync(User user);
+        Task<bool> AddUserToGroupAsync(User user);
+
+        Task<IEnumerable<GroupMessage>> LoadGroupAsync(int groupId);
+        Task<IEnumerable<PrivateMessage>> LoadPrivateAsync(int privateId);
     }
     public class RoomRepository : IRoomRepository
     {
@@ -19,14 +22,26 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<GroupResponse> CreateGroupAsync(Group group)
+        //public async Task<GroupResponse> CreateGroupAsync(Group group)
+        //{
+        //    using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        //    var query = @"INSERT INTO group_chats (group_chat_name, created_at) 
+        //        VALUES (@GroupChatName, @CreatedDate)";
+
+        //    return await connection.QuerySingleAsync<GroupResponse>(query, group);
+        //}
+        public async Task<bool> CreateGroupAsync(Group group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO group_chats (group_chat_name, is_private, created_at) 
-                VALUES (@GroupChatName, @IsPrivate, @CreatedDate)";
+            var query = @"INSERT INTO group_chats (group_chat_name, created_at) 
+                VALUES (@GroupChatName, @CreatedDate)";
 
-            return await connection.QuerySingleAsync<GroupResponse>(query, group);
+            var result = await connection.ExecuteAsync(query, group);
+
+            return result > 0;
+
         }
         public async Task<PrivateResponse> CreatePrivateAsync(Private group)
         {
@@ -37,29 +52,41 @@ namespace api.Repositories
 
             return await connection.QuerySingleAsync<PrivateResponse>(query, group);
         }
-        public async Task<AddUserResponse> AddUserToGroupAsync(AddUser user)
+        //public async Task<UserResponse> AddUserToGroupAsync(User user)
+        //{
+        //    using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        //    var query = @"INSERT INTO group_chats_detail (user_id, group_chat_id, joined_at) 
+        //        VALUES (@UserId, @GroupChatId, @JoinedAt)";
+
+        //    return await connection.QuerySingleAsync<UserResponse>(query, user);
+        //}
+        public async Task<bool> AddUserToGroupAsync(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
             var query = @"INSERT INTO group_chats_detail (user_id, group_chat_id, joined_at) 
                 VALUES (@UserId, @GroupChatId, @JoinedAt)";
 
-            return await connection.QuerySingleAsync<AddUserResponse>(query, user);
+            var result = await connection.ExecuteAsync(query, user);
+
+            return result > 0;
         }
-        public async Task<IEnumerable<Gmsg>> LoadGroupAsync(int groupId)
+
+        public async Task<IEnumerable<GroupMessage>> LoadGroupAsync(int groupId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
             var query = 
-                @"SELECT u.username, m.text, m.created_at 
+                @"SELECT u.username, m.text, m.created_at, m.is_deleted
                 FROM messages m 
                 JOIN users u ON m.user_id = u.user_id 
                 WHERE m.group_chat_id = @GroupChatId 
                 ORDER BY m.created_at";
 
-            return await connection.QueryAsync<Gmsg>(query, groupId);
+            return await connection.QueryAsync<GroupMessage>(query, groupId);
         }
-        public async Task<IEnumerable<Pmsg>> LoadPrivateAsync(int privateId)
+        public async Task<IEnumerable<PrivateMessage>> LoadPrivateAsync(int privateId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
@@ -69,7 +96,7 @@ namespace api.Repositories
                 WHERE m.private_chat_id = @PrivateChatId
                 ORDER BY m.created_at";
             
-            return await connection.QueryAsync<Pmsg>(query, privateId);
+            return await connection.QueryAsync<PrivateMessage>(query, privateId);
         }
     }
 }

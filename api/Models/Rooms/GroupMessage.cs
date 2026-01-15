@@ -1,6 +1,6 @@
 ﻿namespace api.Models.Rooms
 {
-    public class Gmsg
+    public class GroupMessage
     {
             public int MessageId { get; set; }
             public string Text { get; set; }

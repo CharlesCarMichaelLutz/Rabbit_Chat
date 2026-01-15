@@ -23,14 +23,14 @@ namespace api.Repositories
 
             var user =await connection.QuerySingleOrDefaultAsync<User>(
                 """
-                select
+                SELECT
                     user_id       AS UserId,
                     username      AS UserName,
                     password_hash AS PasswordHash,
                     identicon_url AS IdenticonUrl,
                     created_at    AS CreatedDate,
                     is_admin      AS IsAdmin
-                from users where username = @UserName limit 1
+                FROM users WHERE username = @UserName LIMIT 1
                 """, new { username });
 
             return user;
@@ -52,14 +52,14 @@ namespace api.Repositories
 
             var user = await connection.QuerySingleAsync<User>(
                 """
-                select
+                SELECT
                     user_id       AS UserId,
                     username      AS UserName,
                     password_hash AS PasswordHash,
                     identicon_url AS IdenticonUrl,
                     created_at    AS CreatedDate,
                     is_admin      AS IsAdmin
-                from users where username = @UserName limit 1
+                FROM users WHERE username = @UserName LIMIT 1
                 """, new { username });
 
             return user;

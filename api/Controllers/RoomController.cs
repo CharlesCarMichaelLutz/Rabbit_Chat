@@ -31,7 +31,7 @@ namespace api.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddUserToGroup([FromBody] AddUserRequest request)
+        public async Task<IActionResult> AddUserToGroup([FromBody] UserRequest request)
         {
             var addUser = await _roomService.AddUserToGroupAsync(request);
 

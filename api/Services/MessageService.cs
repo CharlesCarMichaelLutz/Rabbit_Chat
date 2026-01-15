@@ -26,7 +26,15 @@ namespace api.Services
                 CreatedDate = DateTime.UtcNow,
                 IsDeleted = false
             };
-            return await _messageRepository.SaveMessageAsync(message);
+
+            var savedMessage = await _messageRepository.SaveMessageAsync(message);
+
+            if (savedMessage)
+            {
+                return await _messageRepository.GetLastMessageAsync();
+            }
+
+            throw new Exception("failed to create message");
         }
         public async Task<bool> DeleteMessageAsync(int id)
         {
