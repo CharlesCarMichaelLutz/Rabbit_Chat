@@ -38,16 +38,24 @@ namespace api.Controllers
             return Ok(addUser);
         }
 
-        [HttpGet("load/group")]
-        public async Task<IActionResult> LoadGroup(int groupId)
+        //[HttpGet("load/group")]
+        //public async Task<IActionResult> LoadGroup([FromBody]int groupId)
+        //{
+        //    var loadRoom = await _roomService.LoadGroup(groupId);
+
+        //    return Ok(loadRoom);
+        //}
+
+        [HttpGet("load/group/{id}")]
+        public async Task<IActionResult> LoadGroup(int id)
         {
-            var loadRoom = await _roomService.LoadGroup(groupId);
+            var loadRoom = await _roomService.LoadGroup(id);
 
             return Ok(loadRoom);
         }
 
         [HttpGet("load/private")]
-        public async Task<IActionResult> LoadPrivate(int privateId)
+        public async Task<IActionResult> LoadPrivate([FromBody] int privateId)
         {
             var loadRoom = await _roomService.LoadPrivate(privateId);
 

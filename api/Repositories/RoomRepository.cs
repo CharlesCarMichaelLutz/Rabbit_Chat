@@ -72,27 +72,28 @@ namespace api.Repositories
 
             return result > 0;
         }
-
         public async Task<IEnumerable<GroupMessage>> LoadGroupAsync(int groupId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = 
-                @"SELECT u.username, m.text, m.created_at, m.is_deleted
+            var query =
+                @"SELECT u.user_id AS UserId, m.message_id AS MessageId, u.username AS UserName, m.text, m.created_at AS CreatedDate, m.is_deleted AS IsDeleted, m.group_chat_id AS GroupChatId
                 FROM messages m 
                 JOIN users u ON m.user_id = u.user_id 
                 WHERE m.group_chat_id = @GroupChatId 
                 ORDER BY m.created_at";
 
-            return await connection.QueryAsync<GroupMessage>(query, groupId);
+            return await connection.QueryAsync<GroupMessage>(query, new { GroupChatId = groupId});
         }
+
         public async Task<IEnumerable<PrivateMessage>> LoadPrivateAsync(int privateId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
             var query =
                 @"SELECT u.username, m.text, m.created_at 
-                FROM messages m JOIN users u ON m.user_id = u.user_id
+                FROM messages m 
+                JOIN users u ON m.user_id = u.user_id
                 WHERE m.private_chat_id = @PrivateChatId
                 ORDER BY m.created_at";
             

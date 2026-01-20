@@ -61,6 +61,7 @@ namespace api.Services
                 MessageId = m.MessageId,
                 Text = m.Text,
                 UserId = m.UserId,
+                UserName = m.UserName,
                 GroupChatId = m.GroupChatId,
                 CreatedDate = m.CreatedDate,
                 IsDeleted = m.IsDeleted,
