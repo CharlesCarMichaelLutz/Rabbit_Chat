@@ -1,4 +1,5 @@
 ﻿using api.Data;
+using api.Models.Message;
 using api.Models.Rooms;
 using Dapper;
 
@@ -6,14 +7,11 @@ namespace api.Repositories
 {
     public interface IRoomRepository
     {
-        //Task<GroupResponse> CreateGroupAsync(Group group);
         Task<bool> CreateGroupAsync(Group group);
-        Task<PrivateResponse> CreatePrivateAsync(Private group);
-        //Task<UserResponse> AddUserToGroupAsync(User user);
+        Task<bool> CreatePrivateAsync(Private group);
         Task<bool> AddUserToGroupAsync(User user);
-
-        Task<IEnumerable<GroupMessage>> LoadGroupAsync(int groupId);
-        Task<IEnumerable<PrivateMessage>> LoadPrivateAsync(int privateId);
+        Task<IEnumerable<MessageResponse>> LoadGroupAsync(int groupId);
+        Task<IEnumerable<MessageResponse>> LoadPrivateAsync(int privateId);
     }
     public class RoomRepository : IRoomRepository
     {
@@ -43,15 +41,27 @@ namespace api.Repositories
             return result > 0;
 
         }
-        public async Task<PrivateResponse> CreatePrivateAsync(Private group)
+        //public async Task<PrivateResponse> CreatePrivateAsync(Private group)
+        //{
+        //    using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        //    var query = @"INSERT INTO private_chats (user1_id, user2_id, created_at) 
+        //        VALUES (@UserOneId, @UserTwoId, @CreatedDate)";
+
+        //    return await connection.QuerySingleAsync<PrivateResponse>(query, group);
+        //}
+        public async Task<bool> CreatePrivateAsync(Private group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
             var query = @"INSERT INTO private_chats (user1_id, user2_id, created_at) 
                 VALUES (@UserOneId, @UserTwoId, @CreatedDate)";
 
-            return await connection.QuerySingleAsync<PrivateResponse>(query, group);
+            var result = await connection.ExecuteAsync(query, group);
+
+            return result > 0;
         }
+
         //public async Task<UserResponse> AddUserToGroupAsync(User user)
         //{
         //    using var connection = await _connectionFactory.CreateConnectionAsync();
@@ -72,32 +82,52 @@ namespace api.Repositories
 
             return result > 0;
         }
-        public async Task<IEnumerable<GroupMessage>> LoadGroupAsync(int groupId)
+        public async Task<IEnumerable<MessageResponse>> LoadGroupAsync(int groupId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query =
-                @"SELECT u.user_id AS UserId, m.message_id AS MessageId, u.username AS UserName, m.text, m.created_at AS CreatedDate, m.is_deleted AS IsDeleted, m.group_chat_id AS GroupChatId
+            const string sql =
+                """
+                SELECT 
+                    u.user_id AS UserId, 
+                    m.message_id AS MessageId, 
+                    u.username AS UserName, 
+                    m.text, 
+                    m.created_at AS CreatedDate, 
+                    m.is_deleted AS IsDeleted, 
+                    m.group_chat_id AS GroupChatId,
+                    m.private_chat_id AS PrivateChatId
                 FROM messages m 
                 JOIN users u ON m.user_id = u.user_id 
                 WHERE m.group_chat_id = @GroupChatId 
-                ORDER BY m.created_at";
+                ORDER BY m.created_at
+                """;
 
-            return await connection.QueryAsync<GroupMessage>(query, new { GroupChatId = groupId});
+            return await connection.QueryAsync<MessageResponse>(sql, new { GroupChatId = groupId});
         }
 
-        public async Task<IEnumerable<PrivateMessage>> LoadPrivateAsync(int privateId)
+        public async Task<IEnumerable<MessageResponse>> LoadPrivateAsync(int privateId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query =
-                @"SELECT u.username, m.text, m.created_at 
+            const string sql =
+                """
+                SELECT 
+                    u.user_id AS UserId, 
+                    m.message_id AS MessageId,
+                    u.username AS UserName, 
+                    m.text, 
+                    m.created_at AS CreatedDate,
+                    m.is_deleted AS IsDeleted, 
+                    m.group_chat_id AS GroupChatId,
+                    m.private_chat_id AS PrivateChatId
                 FROM messages m 
                 JOIN users u ON m.user_id = u.user_id
                 WHERE m.private_chat_id = @PrivateChatId
-                ORDER BY m.created_at";
+                ORDER BY m.created_at
+                """;
             
-            return await connection.QueryAsync<PrivateMessage>(query, privateId);
+            return await connection.QueryAsync<MessageResponse>(sql, new { PrivateChatId = privateId });
         }
     }
 }

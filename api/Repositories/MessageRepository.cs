@@ -6,7 +6,6 @@ namespace api.Repositories
 {
     public interface IMessageRepository
     {
-        //Task<Message> SaveMessageAsync(Message message);
         Task<bool> SaveMessageAsync(Message message);
         Task<MessageResponse> GetLastMessageAsync();
         Task<MessageResponse> GetMessageById(int id);

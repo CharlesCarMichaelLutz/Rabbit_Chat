@@ -1,17 +1,16 @@
-﻿using api.Models.Rooms;
+﻿using api.Models.Message;
+using api.Models.Rooms;
 using api.Repositories;
 
 namespace api.Services
 {
     public interface IRoomService
     {
-        //Task<GroupResponse> CreateGroupAsync(GroupRequest request);
         Task<bool> CreateGroupAsync(GroupRequest request);
-        Task<PrivateResponse> CreatePrivateAsync(PrivateRequest request);
-        //Task<UserResponse> AddUserToGroupAsync(UserRequest request);
+        Task<bool> CreatePrivateAsync(PrivateRequest request);
         Task<bool> AddUserToGroupAsync(UserRequest request);
-        Task<IEnumerable<GroupMessage>> LoadGroup(int groupId);
-        Task<IEnumerable<PrivateMessage>> LoadPrivate(int privateId);
+        Task<IEnumerable<MessageResponse>> LoadGroup(int groupId);
+        Task<IEnumerable<MessageResponse>> LoadPrivate(int privateId);
     }
     public class RoomService : IRoomService
     {
@@ -30,7 +29,7 @@ namespace api.Services
 
             return await _roomRepository.CreateGroupAsync(newRoom);
         }
-        public async Task<PrivateResponse> CreatePrivateAsync(PrivateRequest request)
+        public async Task<bool> CreatePrivateAsync(PrivateRequest request)
         {
             var newRoom = new Private
             {
@@ -52,30 +51,33 @@ namespace api.Services
             
             return await _roomRepository.AddUserToGroupAsync(addUser);
         }
-        public async Task<IEnumerable<GroupMessage>> LoadGroup(int groupId)
+        public async Task<IEnumerable<MessageResponse>> LoadGroup(int groupId)
         {
             var chatroomList = await _roomRepository.LoadGroupAsync(groupId);
 
-            return chatroomList.Select(m => new GroupMessage
+            return chatroomList.Select(m => new MessageResponse
             {
                 MessageId = m.MessageId,
                 Text = m.Text,
                 UserId = m.UserId,
                 UserName = m.UserName,
                 GroupChatId = m.GroupChatId,
+                PrivateChatId = m.PrivateChatId,
                 CreatedDate = m.CreatedDate,
                 IsDeleted = m.IsDeleted,
             });
         }
-        public async Task<IEnumerable<PrivateMessage>> LoadPrivate(int privateId)
+        public async Task<IEnumerable<MessageResponse>> LoadPrivate(int privateId)
         {
             var chatroomList = await _roomRepository.LoadPrivateAsync(privateId);
 
-            return chatroomList.Select(m => new PrivateMessage
+            return chatroomList.Select(m => new MessageResponse
             {
                 MessageId = m.MessageId,
                 Text = m.Text,
                 UserId = m.UserId,
+                UserName = m.UserName,
+                GroupChatId = m.GroupChatId,
                 PrivateChatId = m.PrivateChatId,
                 CreatedDate = m.CreatedDate,
                 IsDeleted = m.IsDeleted,

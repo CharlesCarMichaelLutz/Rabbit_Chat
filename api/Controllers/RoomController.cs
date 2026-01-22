@@ -14,7 +14,7 @@ namespace api.Controllers
             _roomService = roomService;
         }
 
-        [HttpPost("create/group")]
+        [HttpPost("creategroup")]
         public async Task<IActionResult> CreateGroup([FromBody] GroupRequest request)
         {
             var createGroup = await _roomService.CreateGroupAsync(request);
@@ -22,7 +22,7 @@ namespace api.Controllers
             return Ok(createGroup);
         }
 
-        [HttpPost("create/private")]
+        [HttpPost("createprivate")]
         public async Task<IActionResult> CreatePrivate([FromBody] PrivateRequest request)
         {
             var createGroup = await _roomService.CreatePrivateAsync(request);
@@ -38,24 +38,16 @@ namespace api.Controllers
             return Ok(addUser);
         }
 
-        //[HttpGet("load/group")]
-        //public async Task<IActionResult> LoadGroup([FromBody]int groupId)
-        //{
-        //    var loadRoom = await _roomService.LoadGroup(groupId);
-
-        //    return Ok(loadRoom);
-        //}
-
-        [HttpGet("load/group/{id}")]
-        public async Task<IActionResult> LoadGroup(int id)
+        [HttpGet("loadgroup/{groupId}")]
+        public async Task<IActionResult> LoadGroup(int groupId)
         {
-            var loadRoom = await _roomService.LoadGroup(id);
+            var loadRoom = await _roomService.LoadGroup(groupId);
 
             return Ok(loadRoom);
         }
 
-        [HttpGet("load/private")]
-        public async Task<IActionResult> LoadPrivate([FromBody] int privateId)
+        [HttpGet("loadprivate/{privateId}")]
+        public async Task<IActionResult> LoadPrivate(int privateId)
         {
             var loadRoom = await _roomService.LoadPrivate(privateId);
 
