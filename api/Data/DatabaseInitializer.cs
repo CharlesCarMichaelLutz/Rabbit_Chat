@@ -22,13 +22,14 @@ namespace api.Data
                     identicon_url character varying(255) NOT NULL,
                     created_at timestamp without time zone NOT NULL,
                     is_admin boolean DEFAULT false,
-                )
+                );
                 
                 CREATE TABLE IF NOT EXISTS messages
                 (
                     message_id SERIAL PRIMARY KEY ,
                     text text NOT NULL,
                     user_id integer NOT NULL,
+                    username character varying(100) NOT NULL,
                     created_at timestamp without time zone NOT NULL,
                     group_chat_id integer,
                     private_chat_id integer,
@@ -37,14 +38,14 @@ namespace api.Data
                     CONSTRAINT group_or_private 
                     CHECK ((group_chat_id IS NOT NULL AND private_chat_id IS NULL) OR
                     (group_chat_id IS NULL AND private_chat_id IS NOT NULL))
-                )
+                );
                 
                 CREATE TABLE IF NOT EXISTS group_chats
                 (
                     group_chat_id SERIAL PRIMARY KEY,
                     group_chat_name character varying(100) NOT NULL,
                     created_at timestamp without time zone NOT NULL
-                )
+                );
                 
                 CREATE TABLE IF NOT EXISTS group_chats_detail
                 (
@@ -53,17 +54,18 @@ namespace api.Data
                     joined_at timestamp without time zone NOT NULL
     
                     CONSTRAINT generate_primary_key PRIMARY KEY (user_id, group_chat_id)
-                )
+                );
                 
-                CREATE TABLE IF NOT EXISTS public.private_chats
+                CREATE TABLE IF NOT EXISTS private_chats
                 (
                     private_chat_id SERIAL PRIMARY KEY,
                     user1_id integer NOT NULL,
                     user2_id integer NOT NULL,
                     created_at timestamp without time zone NOT NULL,
     
-                    CONSTRAINT no_duplicates UNIQUE(user1_id, user2_id)
-                )
+                    CONSTRAINT no_duplicates UNIQUE(user1_id, user2_id),
+                    CONSTRAINT ensure_user_order CHECK (user1_id < user2_id)
+                );
             ");
         }
     }

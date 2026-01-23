@@ -6,10 +6,10 @@ namespace api.Repositories
 {
     public interface IMessageRepository
     {
-        Task<bool> SaveMessageAsync(Message message);
-        Task<MessageResponse> GetLastMessageAsync();
-        Task<MessageResponse> GetMessageById(int id);
-        Task<bool> SoftDeleteMessage(Message message);
+        Task<MessageResponse> SaveMessageAsync(Message message);
+        //Task<bool> SoftDeleteMessage(Message message);
+        Task<bool> SoftDeleteMessage(int id, bool delete);
+
     }
     public class MessageRepository : IMessageRepository
     {
@@ -18,48 +18,39 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<bool> SaveMessageAsync(Message message)
+        public async Task<MessageResponse> SaveMessageAsync(Message message)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO messages (text ,user_id ,group_chat_id ,private_chat_id ,created_at ,is_deleted) 
-                VALUES (@Text ,@UserId ,@GroupChatId ,@PrivateChatId ,@CreatedDate ,@IsDeleted)";
+            const string sql =
+                """
+                INSERT INTO messages 
+                    (text, user_id, username, group_chat_id, private_chat_id, created_at, is_deleted) 
+                VALUES 
+                    (@Text, @UserId, @UserName, @GroupChatId, @PrivateChatId, @CreatedDate, @IsDeleted) 
+                RETURNING 
+                    message_id AS "MessageId", text AS "Text", user_id AS "UserId", username AS "UserName", group_chat_id AS "GroupChatId", private_chat_id AS "PrivateChatId", created_at AS "CreatedDate", is_deleted AS "IsDeleted"
+                """;
 
-            var result = await connection.ExecuteAsync(query, message);
-
-            return result > 0;
+            return await connection.QuerySingleAsync<MessageResponse>(sql, message);
         }
-        public async Task<MessageResponse> GetLastMessageAsync()
+        //public async Task<bool> SoftDeleteMessage(Message message)
+        //{
+        //    using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        //    var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE user_id = @UserId ";
+
+        //    var result = await connection.ExecuteAsync(query, message);
+
+        //    return result > 0;
+        //}
+        public async Task<bool> SoftDeleteMessage(int id, bool delete)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"SELECT
-                            user_id       AS UserId,
-                            message_id    AS MessageId,
-                            text          AS Text,
-                            group_chat_id AS GroupChatId,
-                            private_chat_id AS PrivateChatId,
-                            created_at    AS CreatedDate,
-                            is_deleted    AS IsDeleted
-                          FROM messages ORDER BY created_at DESC LIMIT 1";
+            var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE message_id = @MessageId ";
 
-            return await connection.QuerySingleAsync<MessageResponse>(query);
-        }
-        public async Task<MessageResponse> GetMessageById(int id)
-        {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-
-            var query = @"SELECT * FROM messages WHERE message_id = @MessageId";
-
-            return await connection.QuerySingleAsync<MessageResponse>(query, id);
-        }
-        public async Task<bool> SoftDeleteMessage(Message message)
-        {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-
-            var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE user_id = @UserId ";
-
-            var result = await connection.ExecuteAsync(query, message);
+            var result = await connection.ExecuteAsync(query, new { MessageId = id, IsDeleted = delete });
 
             return result > 0;
         }

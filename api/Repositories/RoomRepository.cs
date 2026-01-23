@@ -20,15 +20,6 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        //public async Task<GroupResponse> CreateGroupAsync(Group group)
-        //{
-        //    using var connection = await _connectionFactory.CreateConnectionAsync();
-
-        //    var query = @"INSERT INTO group_chats (group_chat_name, created_at) 
-        //        VALUES (@GroupChatName, @CreatedDate)";
-
-        //    return await connection.QuerySingleAsync<GroupResponse>(query, group);
-        //}
         public async Task<bool> CreateGroupAsync(Group group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
@@ -41,15 +32,6 @@ namespace api.Repositories
             return result > 0;
 
         }
-        //public async Task<PrivateResponse> CreatePrivateAsync(Private group)
-        //{
-        //    using var connection = await _connectionFactory.CreateConnectionAsync();
-
-        //    var query = @"INSERT INTO private_chats (user1_id, user2_id, created_at) 
-        //        VALUES (@UserOneId, @UserTwoId, @CreatedDate)";
-
-        //    return await connection.QuerySingleAsync<PrivateResponse>(query, group);
-        //}
         public async Task<bool> CreatePrivateAsync(Private group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
@@ -61,16 +43,6 @@ namespace api.Repositories
 
             return result > 0;
         }
-
-        //public async Task<UserResponse> AddUserToGroupAsync(User user)
-        //{
-        //    using var connection = await _connectionFactory.CreateConnectionAsync();
-
-        //    var query = @"INSERT INTO group_chats_detail (user_id, group_chat_id, joined_at) 
-        //        VALUES (@UserId, @GroupChatId, @JoinedAt)";
-
-        //    return await connection.QuerySingleAsync<UserResponse>(query, user);
-        //}
         public async Task<bool> AddUserToGroupAsync(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();

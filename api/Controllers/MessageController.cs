@@ -27,9 +27,9 @@ namespace api.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> DeleteMessage(int id)
+        public async Task<IActionResult> DeleteMessage(int id, bool delete)
         {
-            var markDeleted = await _messageService.DeleteMessageAsync(id);
+            var markDeleted = await _messageService.DeleteMessageAsync(id, delete);
 
             //Execute Dapper methods return an integer, therefore boolean is used
             // to indicate success/failure of deleting the message

@@ -6,7 +6,8 @@ namespace api.Services
     public interface IMessageService
     {
         Task<MessageResponse> CreateMessageAsync(MessageRequest request);
-        Task<bool> DeleteMessageAsync(int id);
+        //Task<bool> DeleteMessageAsync(int id);
+        Task<bool> DeleteMessageAsync(int id, bool delete);
     }
     public class MessageService : IMessageService
     {
@@ -21,30 +22,28 @@ namespace api.Services
             {
                 Text = request.Text,
                 UserId = request.UserId,
+                UserName = request.UserName,
                 GroupChatId = request.GroupChatId,
                 PrivateChatId = request.PrivateChatId,
                 CreatedDate = DateTime.UtcNow,
                 IsDeleted = false
             };
 
-            var savedMessage = await _messageRepository.SaveMessageAsync(message);
-
-            if (savedMessage)
-            {
-                return await _messageRepository.GetLastMessageAsync();
-            }
-
-            throw new Exception("failed to create message");
+            return await _messageRepository.SaveMessageAsync(message);
         }
-        public async Task<bool> DeleteMessageAsync(int id)
-        {
-            var deleteMessage = new Message()
-            {
-                MessageId = id,
-                IsDeleted = true
-            };
+        //public async Task<bool> DeleteMessageAsync(int id)
+        //{
+        //    var deleteMessage = new Message()
+        //    {
+        //        MessageId = id,
+        //        IsDeleted = true
+        //    };
 
-            return await _messageRepository.SoftDeleteMessage(deleteMessage);
+        //    return await _messageRepository.SoftDeleteMessage(deleteMessage);
+        //}
+        public async Task<bool> DeleteMessageAsync(int id, bool delete)
+        {
+            return await _messageRepository.SoftDeleteMessage(id, delete);
         }
     }
 }
