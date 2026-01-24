@@ -7,18 +7,19 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController : ControllerBase
+    public class MessagesController : ControllerBase
     {
         private readonly IMessageService _messageService;
-        public MessageController(IMessageService messageService)
+        public MessagesController(IMessageService messageService)
         {
             _messageService = messageService;
         }
 
-        [HttpPost("create")]
+        // POST /api/messages
+        [HttpPost]
         public async Task<IActionResult> CreateMessage([FromBody] MessageRequest request)
         {
-            var createMessage = await _messageService.CreateMessageAsync(request);
+            var createMessage = await _messageService.CreateMessage(request);
 
             //propagate new message to all connected clients 
             // _hubcontext.BroadcastSendMessage(createMessage);
@@ -26,10 +27,12 @@ namespace api.Controllers
             return Ok(createMessage);
         }
 
+        // PATCH /api/messages/{id}?delete=true
+        // keep as PATCH if toggling soft-delete; using a query param binds explicitly
         [HttpPatch("{id}")]
         public async Task<IActionResult> DeleteMessage(int id, bool delete)
         {
-            var markDeleted = await _messageService.DeleteMessageAsync(id, delete);
+            var markDeleted = await _messageService.DeleteMessage(id, delete);
 
             //Execute Dapper methods return an integer, therefore boolean is used
             // to indicate success/failure of deleting the message

@@ -1,12 +1,14 @@
-﻿using api.Models.User;
+﻿using api.Models.Message;
+using api.Models.User;
 using api.Repositories;
 
 namespace api.Services
 {
     public interface IUserService
     {
-        Task<UserResponse> RegisterAsync(UserRequest request);
-        Task<UserResponse> LoginAsync(UserRequest request);
+        Task<UserResponse> Register(UserRequest request);
+        Task<UserResponse> Login(UserRequest request);
+        Task<IEnumerable<LoadUser>> LoadUsers();
     }
     public class UserService : IUserService
     {
@@ -20,11 +22,11 @@ namespace api.Services
             _tokenService = tokenService;
         }
 
-        public async Task<UserResponse> RegisterAsync(UserRequest request)
+        public async Task<UserResponse> Register(UserRequest request)
         {
             var message = "Failed to create user try again";
 
-            var existingUser = await _userRepository.CheckUsernameAsync(request.UserName);
+            var existingUser = await _userRepository.CheckUsername(request.UserName);
 
             if (existingUser is not null)
             {
@@ -45,17 +47,17 @@ namespace api.Services
                 CreatedDate = DateTime.UtcNow
             };
 
-            var query = await _userRepository.CreateUserAsync(newUser);
+            var query = await _userRepository.CreateUser(newUser);
 
             if(query)
             {
-                var result = await LoginAsync(request);
+                var result = await Login(request);
                 return result;
             }
 
             throw new Exception(message);
         }
-        public async Task<UserResponse> LoginAsync(UserRequest request)
+        public async Task<UserResponse> Login(UserRequest request)
         {
             var message = "Failed to login try again";
 
@@ -84,6 +86,18 @@ namespace api.Services
                 IsAdmin = user.IsAdmin,
                 Token = token
             };
+        }
+        public async Task<IEnumerable<LoadUser>> LoadUsers()
+        {
+            var userList = await _userRepository.LoadUsers();
+
+            return userList.Select(u => new LoadUser
+            {
+                UserId = u.UserId,
+                UserName = u.UserName,
+                IdenticonUrl = u.IdenticonUrl,
+                CreatedDate = u.CreatedDate
+            });
         }
     }
 }

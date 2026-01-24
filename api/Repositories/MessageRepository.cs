@@ -6,10 +6,8 @@ namespace api.Repositories
 {
     public interface IMessageRepository
     {
-        Task<MessageResponse> SaveMessageAsync(Message message);
-        //Task<bool> SoftDeleteMessage(Message message);
+        Task<MessageResponse> SaveAndGetMessage(Message message);
         Task<bool> SoftDeleteMessage(int id, bool delete);
-
     }
     public class MessageRepository : IMessageRepository
     {
@@ -18,7 +16,7 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<MessageResponse> SaveMessageAsync(Message message)
+        public async Task<MessageResponse> SaveAndGetMessage(Message message)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
@@ -34,23 +32,16 @@ namespace api.Repositories
 
             return await connection.QuerySingleAsync<MessageResponse>(sql, message);
         }
-        //public async Task<bool> SoftDeleteMessage(Message message)
-        //{
-        //    using var connection = await _connectionFactory.CreateConnectionAsync();
-
-        //    var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE user_id = @UserId ";
-
-        //    var result = await connection.ExecuteAsync(query, message);
-
-        //    return result > 0;
-        //}
         public async Task<bool> SoftDeleteMessage(int id, bool delete)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"UPDATE messages SET is_deleted = @IsDeleted WHERE message_id = @MessageId ";
+            const string sql = 
+                """
+                UPDATE messages SET is_deleted = @IsDeleted WHERE message_id = @MessageId
+                """;
 
-            var result = await connection.ExecuteAsync(query, new { MessageId = id, IsDeleted = delete });
+            var result = await connection.ExecuteAsync(sql, new { MessageId = id, IsDeleted = delete });
 
             return result > 0;
         }

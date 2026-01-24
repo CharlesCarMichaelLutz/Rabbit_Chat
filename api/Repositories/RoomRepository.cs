@@ -7,11 +7,11 @@ namespace api.Repositories
 {
     public interface IRoomRepository
     {
-        Task<bool> CreateGroupAsync(Group group);
-        Task<bool> CreatePrivateAsync(Private group);
-        Task<bool> AddUserToGroupAsync(User user);
-        Task<IEnumerable<MessageResponse>> LoadGroupAsync(int groupId);
-        Task<IEnumerable<MessageResponse>> LoadPrivateAsync(int privateId);
+        Task<bool> CreateGroup(Group group);
+        Task<bool> CreateChat(Private group);
+        Task<bool> AddUserToGroup(User user);
+        Task<IEnumerable<MessageResponse>> LoadGroup(int groupId);
+        Task<IEnumerable<MessageResponse>> LoadChat(int privateId);
     }
     public class RoomRepository : IRoomRepository
     {
@@ -20,41 +20,50 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<bool> CreateGroupAsync(Group group)
+        public async Task<bool> CreateGroup(Group group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO group_chats (group_chat_name, created_at) 
-                VALUES (@GroupChatName, @CreatedDate)";
+            const string sql = 
+                """
+                INSERT INTO group_chats (group_chat_name, created_at) 
+                VALUES (@GroupChatName, @CreatedDate)
+                """;
 
-            var result = await connection.ExecuteAsync(query, group);
+            var result = await connection.ExecuteAsync(sql, group);
 
             return result > 0;
 
         }
-        public async Task<bool> CreatePrivateAsync(Private group)
+        public async Task<bool> CreateChat(Private group)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO private_chats (user1_id, user2_id, created_at) 
-                VALUES (@UserOneId, @UserTwoId, @CreatedDate)";
+            const string sql = 
+                """
+                INSERT INTO private_chats (user1_id, user2_id, created_at) 
+                VALUES (@UserOneId, @UserTwoId, @CreatedDate)
+                """;
 
-            var result = await connection.ExecuteAsync(query, group);
+            var result = await connection.ExecuteAsync(sql, group);
 
             return result > 0;
         }
-        public async Task<bool> AddUserToGroupAsync(User user)
+        public async Task<bool> AddUserToGroup(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO group_chats_detail (user_id, group_chat_id, joined_at) 
-                VALUES (@UserId, @GroupChatId, @JoinedAt)";
+            const string sql = 
+                """
+                INSERT INTO group_chats_detail (user_id, group_chat_id, joined_at) 
+                VALUES (@UserId, @GroupChatId, @JoinedAt)
+                """;
 
-            var result = await connection.ExecuteAsync(query, user);
+            var result = await connection.ExecuteAsync(sql, user);
 
             return result > 0;
         }
-        public async Task<IEnumerable<MessageResponse>> LoadGroupAsync(int groupId)
+        public async Task<IEnumerable<MessageResponse>> LoadGroup(int groupId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
@@ -78,7 +87,7 @@ namespace api.Repositories
             return await connection.QueryAsync<MessageResponse>(sql, new { GroupChatId = groupId});
         }
 
-        public async Task<IEnumerable<MessageResponse>> LoadPrivateAsync(int privateId)
+        public async Task<IEnumerable<MessageResponse>> LoadChat(int privateId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 

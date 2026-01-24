@@ -39,7 +39,6 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddScoped<ISqlConnectionFactory>(_ =>
     new SqlConnectionFactory(config.GetValue<string>("ConnectionStrings:test_chat_app")));
 //builder.Services.AddScoped<DatabaseInitializer>();
-builder.Services.AddSingleton<IStore, Store>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IValidator<UserRequest>, UserValidator>();

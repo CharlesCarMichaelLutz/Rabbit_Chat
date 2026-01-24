@@ -5,9 +5,8 @@ namespace api.Services
 {
     public interface IMessageService
     {
-        Task<MessageResponse> CreateMessageAsync(MessageRequest request);
-        //Task<bool> DeleteMessageAsync(int id);
-        Task<bool> DeleteMessageAsync(int id, bool delete);
+        Task<MessageResponse> CreateMessage(MessageRequest request);
+        Task<bool> DeleteMessage(int id, bool delete);
     }
     public class MessageService : IMessageService
     {
@@ -16,7 +15,7 @@ namespace api.Services
         {
             _messageRepository = messageRepository;
         }
-        public async Task<MessageResponse> CreateMessageAsync(MessageRequest request)
+        public async Task<MessageResponse> CreateMessage(MessageRequest request)
         {
             var message = new Message()
             {
@@ -29,7 +28,7 @@ namespace api.Services
                 IsDeleted = false
             };
 
-            return await _messageRepository.SaveMessageAsync(message);
+            return await _messageRepository.SaveAndGetMessage(message);
         }
         //public async Task<bool> DeleteMessageAsync(int id)
         //{
@@ -41,7 +40,7 @@ namespace api.Services
 
         //    return await _messageRepository.SoftDeleteMessage(deleteMessage);
         //}
-        public async Task<bool> DeleteMessageAsync(int id, bool delete)
+        public async Task<bool> DeleteMessage(int id, bool delete)
         {
             return await _messageRepository.SoftDeleteMessage(id, delete);
         }

@@ -1,4 +1,5 @@
 ﻿using api.Data;
+using api.Models.Message;
 using api.Models.User;
 using Dapper;
 
@@ -6,9 +7,10 @@ namespace api.Repositories
 {
     public interface IUserRepository
     {
-        Task<User?> CheckUsernameAsync(string username);
+        Task<User?> CheckUsername(string username);
         Task<User> GetUser(string username);
-        Task<bool> CreateUserAsync(User user);
+        Task<bool> CreateUser(User user);
+        Task<IEnumerable<LoadUser>> LoadUsers();
     }
     public class UserRepository : IUserRepository
     {
@@ -17,11 +19,11 @@ namespace api.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<User?> CheckUsernameAsync(string username)
+        public async Task<User?> CheckUsername(string username)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var user =await connection.QuerySingleOrDefaultAsync<User>(
+            const string sql =
                 """
                 SELECT
                     user_id       AS UserId,
@@ -31,18 +33,23 @@ namespace api.Repositories
                     created_at    AS CreatedDate,
                     is_admin      AS IsAdmin
                 FROM users WHERE username = @UserName LIMIT 1
-                """, new { username });
+                """;
+
+            var user = await connection.QuerySingleOrDefaultAsync<User>(sql, new { username });
 
             return user;
         }
-        public async Task<bool> CreateUserAsync(User user)
+        public async Task<bool> CreateUser(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var query = @"INSERT INTO users (username, password_hash, identicon_url, created_at) 
-                VALUES (@UserName, @PasswordHash, @IdenticonUrl, @CreatedDate)";
+            const string sql = 
+                """
+                INSERT INTO users (username, password_hash, identicon_url, created_at) 
+                VALUES (@UserName, @PasswordHash, @IdenticonUrl, @CreatedDate)
+                """;
 
-            var result = await connection.ExecuteAsync(query, user);
+            var result = await connection.ExecuteAsync(sql, user);
 
             return result > 0;
         }
@@ -50,7 +57,7 @@ namespace api.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            var user = await connection.QuerySingleAsync<User>(
+            const string sql =
                 """
                 SELECT
                     user_id       AS UserId,
@@ -60,9 +67,28 @@ namespace api.Repositories
                     created_at    AS CreatedDate,
                     is_admin      AS IsAdmin
                 FROM users WHERE username = @UserName LIMIT 1
-                """, new { username });
+                """;
+
+            var user = await connection.QuerySingleAsync<User>(sql , new { username });
 
             return user;
+        }
+        public async Task<IEnumerable<LoadUser>> LoadUsers()
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+
+            const string sql =
+                """
+                SELECT 
+                    user_id AS UserId, 
+                    username AS UserName, 
+                    identicon_url AS IdenticonUrl,
+                    created_at AS CreatedDate
+                FROM users 
+                ORDER BY created_at
+                """;
+
+            return await connection.QueryAsync<LoadUser>(sql);
         }
     }
 }
